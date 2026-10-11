@@ -6,17 +6,32 @@ namespace BusGoMobile
     {
         public static MauiApp CreateMauiApp()
         {
-            var builder = MauiApp.CreateBuilder();
+            MauiAppBuilder builder = MauiApp.CreateBuilder();
             builder
                 .UseMauiApp<App>()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
+
+                    // Inter aileleri
+                    fonts.AddFont("Inter_18pt-Regular.ttf", "InterRegular");
+                    fonts.AddFont("Inter_18pt-Medium.ttf", "InterMedium");
+                    fonts.AddFont("Inter_18pt-SemiBold.ttf", "InterSemiBold");
+                    fonts.AddFont("Inter_18pt-Bold.ttf", "InterBold");
+                    fonts.AddFont("Inter_18pt-ExtraBold.ttf", "InterExtraBold");
+
+                    // Material Symbols ikon fontu
+                    fonts.AddFont("MaterialSymbolsOutlined-Regular.ttf", "MaterialSymbols");
                 });
 
+            builder.Services.AddSingleton<BusGoMobile.Services.DatabaseService>();
+            builder.Services.AddTransient<BusGoMobile.Pages.RegisterPage>();
+            builder.Services.AddTransient<BusGoMobile.Pages.LoginPage>();
+            builder.Services.AddTransient<BusGoMobile.Pages.HomePage>();
+
 #if DEBUG
-    		builder.Logging.AddDebug();
+            builder.Logging.AddDebug();
 #endif
 
             return builder.Build();
