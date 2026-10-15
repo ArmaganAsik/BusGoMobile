@@ -80,5 +80,7 @@
     <Color x:Key="BgMetro">#dc2626</Color>
     <Color x:Key="BgEmerald">#059669</Color>
     <Color x:Key="BgEmeraldText">#047857</Color>
+    
+    <Color x:Key="BgInverseSurface">#213145</Color>
 
 </ResourceDictionary>

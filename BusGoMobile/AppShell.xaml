@@ -6,8 +6,8 @@
 
     <!-- Başlangıç: HomePage (login'i sonra öne alacağız) -->
     <ShellContent
-        Route="HomePage"
-        ContentTemplate="{DataTemplate pages:HomePage}"
+        Route="TripListPage"
+        ContentTemplate="{DataTemplate pages:TripListPage}"
         Shell.TabBarIsVisible="False" />
 
     <ShellContent
