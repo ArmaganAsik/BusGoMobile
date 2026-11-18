@@ -6,8 +6,14 @@
 
     <!-- Başlangıç: HomePage (login'i sonra öne alacağız) -->
     <ShellContent
-        Route="TripListPage"
-        ContentTemplate="{DataTemplate pages:TripListPage}"
+        Route="SplashPage"
+        ContentTemplate="{DataTemplate pages:SplashPage}"
+        Shell.TabBarIsVisible="False" />
+    
+    <!-- GİRİŞ -->
+    <ShellContent
+        Route="LoginPage"
+        ContentTemplate="{DataTemplate pages:LoginPage}"
         Shell.TabBarIsVisible="False" />
 
     <ShellContent
@@ -25,9 +31,5 @@
         ContentTemplate="{DataTemplate pages:ProfilePage}"
         Shell.TabBarIsVisible="False" />
 
-    <ShellContent
-        Route="LoginPage"
-        ContentTemplate="{DataTemplate pages:LoginPage}"
-        Shell.TabBarIsVisible="False" />
 
 </Shell>
