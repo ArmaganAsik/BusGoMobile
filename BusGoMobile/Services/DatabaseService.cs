@@ -128,5 +128,16 @@ namespace BusGoMobile.Services
 
             return trips;
         }
+
+        // Tüm koltuklaro getir
+        public async Task<List<Seat>> GetSeatsAsync(int tripId)
+        {
+            await InitAsync();
+
+            return await _db.QueryAsync<Seat>(
+                "SELECT * FROM Seat WHERE TripId = ? ORDER BY Number;",
+                tripId);
+        }
+
     }
 }
