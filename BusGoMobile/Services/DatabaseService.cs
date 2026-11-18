@@ -139,5 +139,15 @@ namespace BusGoMobile.Services
                 tripId);
         }
 
+        // Tek bir seferi Id ile getir
+        public async Task<Trip> GetTripByIdAsync(int tripId)
+        {
+            await InitAsync();
+
+            var results = await _db.QueryAsync<Trip>(
+                "SELECT * FROM Trip WHERE Id = ? LIMIT 1;", tripId);
+
+            return results.FirstOrDefault();
+        }
     }
 }

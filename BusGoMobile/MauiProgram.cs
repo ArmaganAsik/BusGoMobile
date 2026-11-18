@@ -32,6 +32,8 @@ namespace BusGoMobile
             builder.Services.AddTransient<BusGoMobile.Pages.SearchPage>();
             builder.Services.AddTransient<BusGoMobile.Pages.TripListPage>();
             builder.Services.AddTransient<BusGoMobile.Pages.SeatSelectionPage>();
+            builder.Services.AddTransient<BusGoMobile.Pages.PassengerInfoPage>();
+            builder.Services.AddTransient<BusGoMobile.Pages.PaymentPage>();
 
 #if DEBUG
             builder.Logging.AddDebug();
