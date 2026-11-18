@@ -144,7 +144,7 @@ namespace BusGoMobile.Services
         {
             await InitAsync();
 
-            var results = await _db.QueryAsync<Trip>(
+            List<Trip> results = await _db.QueryAsync<Trip>(
                 "SELECT * FROM Trip WHERE Id = ? LIMIT 1;", tripId);
 
             return results.FirstOrDefault();

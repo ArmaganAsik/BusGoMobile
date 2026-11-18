@@ -216,7 +216,7 @@ public partial class SeatSelectionPage : ContentPage
             BackgroundColor = KoltukRengi(seat)
         };
 
-        var content = new VerticalStackLayout
+        VerticalStackLayout content = new VerticalStackLayout
         {
             Spacing = 0,
             HorizontalOptions = LayoutOptions.Center,

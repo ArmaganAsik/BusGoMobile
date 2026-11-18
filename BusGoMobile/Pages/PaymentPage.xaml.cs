@@ -1,3 +1,4 @@
+using BusGoMobile.Models;
 using BusGoMobile.Services;
 
 namespace BusGoMobile.Pages;
@@ -21,7 +22,7 @@ public partial class PaymentPage : ContentPage
     {
         base.OnAppearing();
 
-        var trip = await _db.GetTripByIdAsync(TripId);
+        Trip trip = await _db.GetTripByIdAsync(TripId);
         if (trip != null)
             PriceLabel.Text = trip.Price.ToString();
     }
@@ -34,7 +35,7 @@ public partial class PaymentPage : ContentPage
         if (digits.Length > 16) digits = digits.Substring(0, 16);
 
         // 4'lü gruplara böl
-        var gruplu = string.Join(" ", Enumerable.Range(0, (digits.Length + 3) / 4).Select(i => digits.Substring(i * 4, Math.Min(4, digits.Length - i * 4))));
+        string gruplu = string.Join(" ", Enumerable.Range(0, (digits.Length + 3) / 4).Select(i => digits.Substring(i * 4, Math.Min(4, digits.Length - i * 4))));
 
         // Input'u biçimlenmiþ haliyle güncelle (sonsuz döngü olmasýn diye kontrol)
         if (CardNumberEntry.Text != gruplu)
@@ -45,7 +46,7 @@ public partial class PaymentPage : ContentPage
         }
 
         // Karta yansýt: girilen kýsmý göster, kalaný • ile doldur
-        var kartGosterim = "";
+        string kartGosterim = "";
         for (int i = 0; i < 16; i++)
         {
             kartGosterim += i < digits.Length ? digits[i].ToString() : "•";
