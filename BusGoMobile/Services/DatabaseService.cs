@@ -28,7 +28,7 @@ namespace BusGoMobile.Services
             await InitAsync();
 
             return await _db.ExecuteAsync(
-                @"INSERT INTO User (FirstName, LastName, Email, Phone, Password, MarketingOptIn, CreatedAt)
+                @"INSERT INTO AppUser (FirstName, LastName, Email, Phone, Password, MarketingOptIn, CreatedAt)
               VALUES (?, ?, ?, ?, ?, ?, ?);",
                 appUser.FirstName, appUser.LastName, appUser.Email, appUser.Phone,
                 appUser.Password, appUser.MarketingOptIn, appUser.CreatedAt);
@@ -40,7 +40,7 @@ namespace BusGoMobile.Services
             await InitAsync();
 
             int count = await _db.ExecuteScalarAsync<int>(
-                "SELECT COUNT(*) FROM User WHERE Email = ?;", email);
+                "SELECT COUNT(*) FROM AppUser WHERE Email = ?;", email);
 
             return count > 0;
         }
@@ -51,7 +51,7 @@ namespace BusGoMobile.Services
             await InitAsync();
 
             List<AppUser> results = await _db.QueryAsync<AppUser>(
-                "SELECT * FROM User WHERE Email = ? AND Password = ? LIMIT 1;",
+                "SELECT * FROM AppUser WHERE Email = ? AND Password = ? LIMIT 1;",
                 email, password);
 
             return results.FirstOrDefault();
@@ -129,7 +129,7 @@ namespace BusGoMobile.Services
             return trips;
         }
 
-        // Tüm koltuklaro getir
+        // Tüm koltukları getir
         public async Task<List<Seat>> GetSeatsAsync(int tripId)
         {
             await InitAsync();

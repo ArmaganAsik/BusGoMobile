@@ -1,3 +1,4 @@
+using BusGoMobile.Models;
 using BusGoMobile.Services;
 
 namespace BusGoMobile.Pages;
@@ -61,7 +62,7 @@ public partial class LoginPage : ContentPage
 
         SetBusy(true);
 
-        var user = await _db.GetUserAsync(EmailEntry.Text.Trim(), PasswordEntry.Text);
+        AppUser user = await _db.GetUserAsync(EmailEntry.Text.Trim(), PasswordEntry.Text);
 
         SetBusy(false);
 

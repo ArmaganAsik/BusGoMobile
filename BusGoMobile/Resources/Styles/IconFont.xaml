@@ -61,4 +61,12 @@
     <x:String x:Key="IconGoogle">&#xea88;</x:String>
     <x:String x:Key="IconApple">&#xe0f0;</x:String>
 
+    <x:String x:Key="IconSettings">&#xe8b8;</x:String>
+    <x:String x:Key="IconEdit">&#xe3c9;</x:String>
+    <x:String x:Key="IconPayment">&#xe8a1;</x:String>
+    <x:String x:Key="IconLogout">&#xe9ba;</x:String>
+    <x:String x:Key="IconUpcoming">&#xe8df;</x:String>
+    <x:String x:Key="IconDone">&#xe876;</x:String>
+    <x:String x:Key="IconRoute">&#xeacd;</x:String>
+
 </ResourceDictionary>

@@ -46,10 +46,10 @@ public partial class RegisterPage : ContentPage
     {
         string val = e.NewTextValue ?? "";
 
-        var bos = (Color)Application.Current.Resources["BgSurfaceContainerHighest"];
-        var zayif = (Color)Application.Current.Resources["BgMetro"];
-        var orta = (Color)Application.Current.Resources["BgSecondary"];
-        var guclu = Color.FromArgb("#16a34a");
+        Color bos = (Color)Application.Current.Resources["BgSurfaceContainerHighest"];
+        Color zayif = (Color)Application.Current.Resources["BgMetro"];
+        Color orta = (Color)Application.Current.Resources["BgSecondary"];
+        Color guclu = Color.FromArgb("#16a34a");
 
         StrengthBar1.Color = bos;
         StrengthBar2.Color = bos;
@@ -99,7 +99,7 @@ public partial class RegisterPage : ContentPage
             return;
         }
 
-        var user = new AppUser
+        AppUser user = new AppUser
         {
             FirstName = FirstNameEntry.Text.Trim(),
             LastName = LastNameEntry.Text.Trim(),
