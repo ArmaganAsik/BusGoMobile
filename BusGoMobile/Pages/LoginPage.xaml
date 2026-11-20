@@ -2,232 +2,243 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="BusGoMobile.Pages.LoginPage"
-             BackgroundColor="{StaticResource BgSurface}"
+             BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
              Shell.NavBarIsVisible="False">
 
-    <Grid RowDefinitions="Auto,*">
+    <ScrollView>
+        <VerticalStackLayout Spacing="0">
 
-        <!-- ÜST BAR -->
-        <Grid Grid.Row="0"
-              BackgroundColor="{StaticResource BgSurface}"
-              Padding="8,12"
-              ColumnDefinitions="Auto,*"
-              ColumnSpacing="8">
-            <Label Grid.Column="0"
-                   Text="‹" FontSize="28"
-                   TextColor="{StaticResource BgOnSurface}"
-                   VerticalOptions="Center"
-                   WidthRequest="40"
-                   HorizontalTextAlignment="Center" />
-            <Label Grid.Column="1"
-                   Text="Giriş Yap"
-                   FontFamily="InterBold" FontSize="17"
-                   TextColor="{StaticResource BgOnSurface}"
-                   VerticalOptions="Center" />
-        </Grid>
+            <!-- HERO: tam genişlik, 180px -->
+            <Grid HeightRequest="180">
+                <Image Source="bus1.png"
+                       Aspect="AspectFill"
+                       VerticalOptions="Fill" />
 
-        <!-- İÇERİK -->
-        <ScrollView Grid.Row="1">
-            <VerticalStackLayout Padding="16,8,16,32" Spacing="20">
+                <!-- Üst karartma: logo okunsun -->
+                <BoxView VerticalOptions="Start"
+                         HeightRequest="70"
+                         InputTransparent="True">
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#55000000" Offset="0.0" />
+                            <GradientStop Color="#00000000" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
 
-                <!-- Marka / Karşılama -->
-                <VerticalStackLayout Spacing="8" HorizontalOptions="Center" Margin="0,8,0,0">
-                    <Border WidthRequest="56" HeightRequest="56"
-                            StrokeShape="RoundRectangle 14"
+                <!-- Alt fade: içeriğe yumuşak geçiş -->
+                <BoxView VerticalOptions="End"
+                         HeightRequest="60"
+                         InputTransparent="True">
+                    <BoxView.Background>
+                        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+                            <GradientStop Color="#00FFFFFF" Offset="0.0" />
+                            <GradientStop Color="#FFFFFFFF" Offset="1.0" />
+                        </LinearGradientBrush>
+                    </BoxView.Background>
+                </BoxView>
+
+                <!-- Sol üstte marka -->
+                <HorizontalStackLayout Spacing="7"
+                                       HorizontalOptions="Start" VerticalOptions="Start"
+                                       Padding="18,14">
+                    <Border WidthRequest="26" HeightRequest="26"
+                            StrokeShape="RoundRectangle 8"
                             BackgroundColor="{StaticResource BgSecondaryContainer}"
-                            HorizontalOptions="Center">
+                            VerticalOptions="Center">
                         <Label Text="{StaticResource IconBus}"
-                               FontFamily="MaterialSymbols" FontSize="30"
-                               TextColor="{StaticResource BgOnSecondary}"
+                               FontFamily="MaterialSymbols" FontSize="15"
+                               TextColor="White"
                                HorizontalOptions="Center" VerticalOptions="Center" />
                     </Border>
-                    <Label Text="Hoş Geldiniz"
-                           FontFamily="InterExtraBold" FontSize="24"
-                           TextColor="{StaticResource BgOnSurface}"
-                           HorizontalOptions="Center" />
-                    <Label Text="Biletlerinizi yönetmek ve avantajlardan faydalanmak için giriş yapın."
-                           FontFamily="InterRegular" FontSize="14"
-                           TextColor="{StaticResource BgOnSurfaceVariant}"
-                           HorizontalTextAlignment="Center" />
-                </VerticalStackLayout>
+                    <Label Text="BusGo"
+                           FontFamily="InterExtraBold" FontSize="16"
+                           TextColor="White"
+                           VerticalOptions="Center" />
+                </HorizontalStackLayout>
+            </Grid>
 
-                <!-- Sekme seçici: E-posta / Telefon -->
-                <Border StrokeShape="RoundRectangle 12"
-                        BackgroundColor="{StaticResource BgSurfaceContainerLow}"
-                        Padding="4">
-                    <Grid ColumnDefinitions="*,*" ColumnSpacing="4">
-                        <Border x:Name="TabEmailBorder" Grid.Column="0"
-                                StrokeShape="RoundRectangle 8"
-                                BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
-                                Padding="0" HeightRequest="40">
-                            <Label x:Name="TabEmailLabel"
-                                   Text="📧  E-posta ile"
-                                   FontFamily="InterSemiBold" FontSize="14"
+            <!-- İÇERİK -->
+            <VerticalStackLayout Padding="24,4,24,24" Spacing="0">
+
+                <!-- Başlık + açıklama -->
+                <Label Text="Yolculuğun Burada Başlıyor."
+                       FontFamily="InterExtraBold" FontSize="24"
+                       TextColor="{StaticResource BgOnSurface}" />
+                <Label Text="Biletlerine ulaşmak ve yeni rotalar keşfetmek için giriş yap."
+                       FontFamily="InterRegular" FontSize="13"
+                       TextColor="{StaticResource BgOnSurfaceVariant}"
+                       LineHeight="1.25"
+                       Margin="0,4,0,0" />
+
+                <!-- FORM -->
+                <VerticalStackLayout Spacing="11" Margin="0,16,0,0">
+
+                    <!-- E-posta -->
+                    <Border x:Name="EmailBorder"
+                            StrokeShape="RoundRectangle 12"
+                            BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                            Stroke="{StaticResource BgOutlineVariant}"
+                            StrokeThickness="1"
+                            Padding="14,0" HeightRequest="50">
+                        <Grid ColumnDefinitions="24,*" ColumnSpacing="11">
+                            <Label Grid.Column="0"
+                                   x:Name="EmailIcon"
+                                   Text="{StaticResource IconAlternateEmail}"
+                                   FontFamily="MaterialSymbols" FontSize="18"
+                                   TextColor="{StaticResource BgOnSurfaceVariant}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                            <Entry Grid.Column="1"
+                                   x:Name="EmailEntry"
+                                   Placeholder="E-posta adresiniz"
+                                   Keyboard="Email"
+                                   FontFamily="InterMedium" FontSize="15"
                                    TextColor="{StaticResource BgOnSurface}"
-                                   HorizontalOptions="Center" VerticalOptions="Center" />
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnEmailTabTapped" />
-                            </Border.GestureRecognizers>
+                                   PlaceholderColor="{StaticResource BgOutline}"
+                                   BackgroundColor="Transparent"
+                                   HeightRequest="48"
+                                   VerticalOptions="Center"
+                                   Focused="OnEmailFocused" Unfocused="OnEmailUnfocused" />
+                        </Grid>
+                    </Border>
+
+                    <!-- Şifre -->
+                    <Border x:Name="PasswordBorder"
+                            StrokeShape="RoundRectangle 12"
+                            BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                            Stroke="{StaticResource BgOutlineVariant}"
+                            StrokeThickness="1"
+                            Padding="14,0" HeightRequest="50">
+                        <Grid ColumnDefinitions="24,*,28" ColumnSpacing="11">
+                            <Label Grid.Column="0"
+                                   x:Name="PasswordIcon"
+                                   Text="{StaticResource IconLock}"
+                                   FontFamily="MaterialSymbols" FontSize="18"
+                                   TextColor="{StaticResource BgOnSurfaceVariant}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center" />
+                            <Entry Grid.Column="1"
+                                   x:Name="PasswordEntry"
+                                   Placeholder="Şifreniz"
+                                   IsPassword="True"
+                                   FontFamily="InterMedium" FontSize="15"
+                                   TextColor="{StaticResource BgOnSurface}"
+                                   PlaceholderColor="{StaticResource BgOutline}"
+                                   BackgroundColor="Transparent"
+                                   HeightRequest="48"
+                                   VerticalOptions="Center"
+                                   Focused="OnPasswordFocused" Unfocused="OnPasswordUnfocused" />
+                            <Label Grid.Column="2"
+                                   x:Name="PassEyeIcon"
+                                   Text="{StaticResource IconVisibility}"
+                                   FontFamily="MaterialSymbols" FontSize="18"
+                                   TextColor="{StaticResource BgOutline}"
+                                   HorizontalOptions="Center"
+                                   VerticalOptions="Center">
+                                <Label.GestureRecognizers>
+                                    <TapGestureRecognizer Tapped="OnTogglePasswordTapped" />
+                                </Label.GestureRecognizers>
+                            </Label>
+                        </Grid>
+                    </Border>
+
+                    <!-- Beni hatırla + Şifremi unuttum (kompakt) -->
+                    <Grid ColumnDefinitions="Auto,*,Auto" Margin="0,-2,0,0">
+                        <CheckBox x:Name="RememberCheck" Grid.Column="0"
+                                  Color="{StaticResource BgSecondary}"
+                                  Scale="0.8"
+                                  VerticalOptions="Center"
+                                  HorizontalOptions="Start"
+                                  Margin="-8,0,0,0" />
+                        <Label Grid.Column="1" Text="Beni hatırla"
+                               FontFamily="InterMedium" FontSize="12"
+                               TextColor="{StaticResource BgOnSurfaceVariant}"
+                               VerticalOptions="Center"
+                               Margin="-4,0,0,0" />
+                        <Label Grid.Column="2" Text="Şifremi unuttum?"
+                               FontFamily="InterSemiBold" FontSize="12"
+                               TextColor="{StaticResource BgSecondary}"
+                               VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Giriş butonu -->
+                    <Border StrokeShape="RoundRectangle 14"
+                            BackgroundColor="{StaticResource BgSecondaryContainer}"
+                            StrokeThickness="0"
+                            HeightRequest="52"
+                            x:Name="LoginButtonBorder"
+                            Margin="0,2,0,0">
+                        <Grid>
+                            <HorizontalStackLayout x:Name="LoginButtonContent"
+                                                   Spacing="8"
+                                                   HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="Giriş Yap"
+                                       FontFamily="InterBold" FontSize="16"
+                                       TextColor="White" VerticalOptions="Center" />
+                                <Label Text="{StaticResource IconArrowForward}"
+                                       FontFamily="MaterialSymbols" FontSize="18"
+                                       TextColor="White" VerticalOptions="Center" />
+                            </HorizontalStackLayout>
+                            <ActivityIndicator x:Name="LoginSpinner"
+                                               IsVisible="False" IsRunning="False"
+                                               Color="White"
+                                               HorizontalOptions="Center" VerticalOptions="Center" />
+                        </Grid>
+                        <Border.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="OnLoginClicked" />
+                        </Border.GestureRecognizers>
+                    </Border>
+
+                    <!-- Ayırıcı -->
+                    <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="12" Margin="0,2,0,0">
+                        <BoxView Grid.Column="0" HeightRequest="1"
+                                 Color="{StaticResource BgOutlineVariant}" VerticalOptions="Center" />
+                        <Label Grid.Column="1" Text="veya"
+                               FontFamily="InterRegular" FontSize="12"
+                               TextColor="{StaticResource BgOnSurfaceVariant}" />
+                        <BoxView Grid.Column="2" HeightRequest="1"
+                                 Color="{StaticResource BgOutlineVariant}" VerticalOptions="Center" />
+                    </Grid>
+
+                    <!-- Sosyal giriş (yan yana kompakt) -->
+                    <Grid ColumnDefinitions="*,*" ColumnSpacing="11">
+                        <Border Grid.Column="0"
+                                StrokeShape="RoundRectangle 12"
+                                BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                                Stroke="{StaticResource BgOutlineVariant}" StrokeThickness="1"
+                                HeightRequest="48">
+                            <HorizontalStackLayout Spacing="7" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="G" FontFamily="InterExtraBold" FontSize="15"
+                                       TextColor="{StaticResource BgSecondary}" VerticalOptions="Center" />
+                                <Label Text="Google" FontFamily="InterSemiBold" FontSize="13"
+                                       TextColor="{StaticResource BgOnSurface}" VerticalOptions="Center" />
+                            </HorizontalStackLayout>
                         </Border>
 
-                        <Border x:Name="TabPhoneBorder" Grid.Column="1"
-                                StrokeShape="RoundRectangle 8"
-                                BackgroundColor="Transparent"
-                                Padding="0" HeightRequest="40">
-                            <Label x:Name="TabPhoneLabel"
-                                   Text="📱  Telefon ile"
-                                   FontFamily="InterRegular" FontSize="14"
-                                   TextColor="{StaticResource BgOnSurfaceVariant}"
-                                   HorizontalOptions="Center" VerticalOptions="Center" />
-                            <Border.GestureRecognizers>
-                                <TapGestureRecognizer Tapped="OnPhoneTabTapped" />
-                            </Border.GestureRecognizers>
+                        <Border Grid.Column="1"
+                                StrokeShape="RoundRectangle 12"
+                                BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
+                                Stroke="{StaticResource BgOutlineVariant}" StrokeThickness="1"
+                                HeightRequest="48">
+                            <HorizontalStackLayout Spacing="7" HorizontalOptions="Center" VerticalOptions="Center">
+                                <Label Text="" FontFamily="InterExtraBold" FontSize="15"
+                                       TextColor="{StaticResource BgOnSurface}" VerticalOptions="Center" />
+                                <Label Text="Apple" FontFamily="InterSemiBold" FontSize="13"
+                                       TextColor="{StaticResource BgOnSurface}" VerticalOptions="Center" />
+                            </HorizontalStackLayout>
                         </Border>
                     </Grid>
-                </Border>
 
-                <!-- Form kartı -->
-                <Border StrokeShape="RoundRectangle 12"
-                        BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
-                        Padding="16">
-                    <VerticalStackLayout Spacing="16">
-
-                        <!-- E-posta / Telefon alanı -->
-                        <VerticalStackLayout Spacing="4">
-                            <Label x:Name="PrimaryInputLabel"
-                                   Text="E-POSTA ADRESİ"
-                                   FontFamily="InterBold" FontSize="11"
-                                   TextColor="{StaticResource BgOnSurfaceVariant}" />
-                            <Border StrokeShape="RoundRectangle 8"
-                                    BackgroundColor="{StaticResource BgSurfaceContainerLow}"
-                                    Padding="12,0" HeightRequest="48">
-                                <Grid ColumnDefinitions="Auto,*" ColumnSpacing="8">
-                                    <Label Grid.Column="0"
-                                           x:Name="PrimaryInputIcon"
-                                           Text="{StaticResource IconAlternateEmail}"
-                                           FontFamily="MaterialSymbols" FontSize="20"
-                                           TextColor="{StaticResource BgOutline}"
-                                           VerticalOptions="Center" />
-                                    <Entry Grid.Column="1"
-                                           x:Name="PrimaryEntry"
-                                           Placeholder="ornek@email.com"
-                                           Keyboard="Email"
-                                           FontFamily="InterRegular" FontSize="14"
-                                           TextColor="{StaticResource BgOnSurface}"
-                                           PlaceholderColor="{StaticResource BgOutline}"
-                                           BackgroundColor="Transparent"
-                                           VerticalOptions="Center" />
-                                </Grid>
-                            </Border>
-                        </VerticalStackLayout>
-
-                        <!-- Şifre -->
-                        <VerticalStackLayout Spacing="4">
-                            <Label Text="ŞİFRE"
-                                   FontFamily="InterBold" FontSize="11"
-                                   TextColor="{StaticResource BgOnSurfaceVariant}" />
-                            <Border StrokeShape="RoundRectangle 8"
-                                    BackgroundColor="{StaticResource BgSurfaceContainerLow}"
-                                    Padding="12,0" HeightRequest="48">
-                                <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="8">
-                                    <Label Grid.Column="0"
-                                           Text="{StaticResource IconLock}"
-                                           FontFamily="MaterialSymbols" FontSize="20"
-                                           TextColor="{StaticResource BgOutline}"
-                                           VerticalOptions="Center" />
-                                    <Entry Grid.Column="1"
-                                           x:Name="PasswordEntry"
-                                           Placeholder="••••••••"
-                                           IsPassword="True"
-                                           FontFamily="InterRegular" FontSize="14"
-                                           TextColor="{StaticResource BgOnSurface}"
-                                           PlaceholderColor="{StaticResource BgOutline}"
-                                           BackgroundColor="Transparent"
-                                           VerticalOptions="Center" />
-                                    <Label Grid.Column="2"
-                                           x:Name="PassEyeIcon"
-                                           Text="{StaticResource IconVisibility}"
-                                           FontFamily="MaterialSymbols" FontSize="20"
-                                           TextColor="{StaticResource BgOutline}"
-                                           VerticalOptions="Center">
-                                        <Label.GestureRecognizers>
-                                            <TapGestureRecognizer Tapped="OnTogglePasswordTapped" />
-                                        </Label.GestureRecognizers>
-                                    </Label>
-                                </Grid>
-                            </Border>
-                        </VerticalStackLayout>
-
-                        <!-- Beni hatırla + Şifremi unuttum -->
-                        <Grid ColumnDefinitions="Auto,*,Auto">
-                            <CheckBox x:Name="RememberCheck" Grid.Column="0"
-                                      Color="{StaticResource BgSecondary}"
-                                      VerticalOptions="Center" />
-                            <Label Grid.Column="1" Text="Beni Hatırla"
-                                   FontFamily="InterMedium" FontSize="12"
-                                   TextColor="{StaticResource BgOnSurfaceVariant}"
-                                   VerticalOptions="Center" />
-                            <Label Grid.Column="2" Text="Şifremi Unuttum?"
-                                   FontFamily="InterMedium" FontSize="12"
-                                   TextColor="{StaticResource BgSecondary}"
-                                   VerticalOptions="Center" />
-                        </Grid>
-
-                        <!-- Giriş butonu -->
-                        <Button x:Name="LoginButton"
-                                Text="Giriş Yap  →"
-                                FontFamily="InterBold" FontSize="17"
-                                HeightRequest="52"
-                                BackgroundColor="{StaticResource BgSecondaryContainer}"
-                                TextColor="{StaticResource BgOnSecondary}"
-                                CornerRadius="12"
-                                Clicked="OnLoginClicked" />
-
-                    </VerticalStackLayout>
-                </Border>
-
-                <!-- Ayırıcı -->
-                <Grid ColumnDefinitions="*,Auto,*" ColumnSpacing="12">
-                    <BoxView Grid.Column="0" HeightRequest="1"
-                             Color="{StaticResource BgSurfaceContainerHigh}"
-                             VerticalOptions="Center" />
-                    <Label Grid.Column="1" Text="veya şununla devam et"
-                           FontFamily="InterRegular" FontSize="12"
-                           TextColor="{StaticResource BgOnSurfaceVariant}" />
-                    <BoxView Grid.Column="2" HeightRequest="1"
-                             Color="{StaticResource BgSurfaceContainerHigh}"
-                             VerticalOptions="Center" />
-                </Grid>
-
-                <!-- Sosyal giriş -->
-                <VerticalStackLayout Spacing="8">
-                    <Border StrokeShape="RoundRectangle 12"
-                            BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
-                            Stroke="{StaticResource BgOutlineVariant}"
-                            Padding="0" HeightRequest="48">
-                        <Label Text="G   Google ile Giriş Yap"
-                               FontFamily="InterSemiBold" FontSize="14"
-                               TextColor="{StaticResource BgOnSurface}"
-                               HorizontalOptions="Center" VerticalOptions="Center" />
-                    </Border>
-                    <Border StrokeShape="RoundRectangle 12"
-                            BackgroundColor="{StaticResource BgSurfaceContainerLowest}"
-                            Stroke="{StaticResource BgOutlineVariant}"
-                            Padding="0" HeightRequest="48">
-                        <Label Text=" Apple ile Giriş Yap"
-                               FontFamily="InterSemiBold" FontSize="14"
-                               TextColor="{StaticResource BgOnSurface}"
-                               HorizontalOptions="Center" VerticalOptions="Center" />
-                    </Border>
                 </VerticalStackLayout>
 
-                <!-- Kayıt ol linki -->
-                <HorizontalStackLayout Spacing="4" HorizontalOptions="Center">
-                    <Label Text="Henüz bir hesabınız yok mu?"
-                           FontFamily="InterRegular" FontSize="14"
+                <!-- Kayıt -->
+                <HorizontalStackLayout Spacing="4" HorizontalOptions="Center" Margin="0,16,0,0">
+                    <Label Text="Hesabınız yok mu?"
+                           FontFamily="InterRegular" FontSize="13"
                            TextColor="{StaticResource BgOnSurfaceVariant}" />
                     <Label Text="Kayıt Ol"
-                           FontFamily="InterBold" FontSize="14"
+                           FontFamily="InterBold" FontSize="13"
                            TextColor="{StaticResource BgSecondary}">
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="OnGoToRegisterTapped" />
@@ -235,19 +246,7 @@
                     </Label>
                 </HorizontalStackLayout>
 
-                <!-- Güven rozeti -->
-                <HorizontalStackLayout Spacing="6" HorizontalOptions="Center">
-                    <Label Text="{StaticResource IconVerifiedUser}"
-                           FontFamily="MaterialSymbols" FontSize="16"
-                           TextColor="{StaticResource BgSecondary}"
-                           VerticalOptions="Center" />
-                    <Label Text="256-Bit SSL ile güvenli oturum açma"
-                           FontFamily="InterMedium" FontSize="11"
-                           TextColor="{StaticResource BgOnSurfaceVariant}"
-                           VerticalOptions="Center" />
-                </HorizontalStackLayout>
-
             </VerticalStackLayout>
-        </ScrollView>
-    </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
